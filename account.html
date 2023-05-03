@@ -46,9 +46,9 @@
                             <hr id="Indicator">
                         </div>
                         <form id="LoginForm">
-                            <input type="text" placeholder="Username">
+                            <input id="loginUsername" type="text" placeholder="Username">
                             <input type="password" placeholder="Password">
-                            <button type="submit" class="btn">Login</button>
+                            <button type="submit" class="btn" onclick=test()>Login</button>
                             <a href="">Forget Password</a>
                         </form>
 
@@ -136,7 +136,10 @@
             RegForm.style.transform = "translatex(300px)";
             LoginForm.style.transform = "translatex(300px)";
             Indicator.style.transform = "translate(0px)";
+        }
 
+        function test() {
+            alert(document.getElementById("loginUsername").value)
         }
     </script>
 
