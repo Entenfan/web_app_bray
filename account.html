@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/login.js"></script> <!-- Hier link laden, es muss allerdings das dbUserSerach.js geladen werden-->
 </head>
 
 <body>
@@ -47,8 +48,8 @@
                         </div>
                         <form id="LoginForm">
                             <input id="loginUsername" type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn" onclick=test()>Login</button>
+                            <input id ="loginPassword" type="password" placeholder="Password">
+                            <button type="submit" class="btn" onclick=readLoginData(document.getElementById("loginUsername").value,document.getElementById("loginPassword").value)> Login </button> <!--Hier muss function von dbUserSearch geladen werden-->
                             <a href="">Forget Password</a>
                         </form>
 
@@ -136,10 +137,6 @@
             RegForm.style.transform = "translatex(300px)";
             LoginForm.style.transform = "translatex(300px)";
             Indicator.style.transform = "translate(0px)";
-        }
-
-        function test() {
-            alert(document.getElementById("loginUsername").value)
         }
     </script>
 
