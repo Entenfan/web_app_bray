@@ -1,10 +1,8 @@
 //Hier soll SQL-Injection gemacht werden
 import mysql from "mysql";
 
-
 class SQLQueryBad {
 
-    var con;
 
     constructor() {
         this.con = mysql.createConnection({
@@ -15,7 +13,7 @@ class SQLQueryBad {
         })
     }
 
-    boolean loginQuery(username, password) {
+    loginQuery(username, password) {
         this.con.connect(function (err) {
                 if (err) throw err;
                 this.con.query("Select * FROM users WHERE username=" + username + "password =" + password, function (err, result, fields) {
