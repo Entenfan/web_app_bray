@@ -53,3 +53,5 @@ app.get("/adminPage.html", function(req, res) {
         res.status(302).redirect('http://localhost/adminPage.html');
     }
 })
+
+
