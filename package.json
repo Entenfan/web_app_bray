@@ -4,5 +4,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.6"
   }
 }

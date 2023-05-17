@@ -1,9 +1,7 @@
-//
-
 const express = require('express');
+//const cookieParser = require('cookie-parser');
 const app = express();
 const port = 80;
-//let query = new SQLQueryBad();
 const mysql = require('mysql');
 
 app.use(express.static("public"));
@@ -29,9 +27,11 @@ app.post("/account", (req,res) => {
         con.query(queryString, function(err, result) {
             if (result  && result.length > 0) {
                 console.log(result);
-                res.send(result);
-                if(result[0].username == "testAdmin") {
-                    res.redirect('https://localhost/adminPage/');
+                console.log(result[0].username);
+                if(result[0].username == "TestAdmin") {
+                    console.log("Erfolgreich als Admin eingeloggt");
+                    res.cookie('privilege', 'Admin');
+                    res.status(302).redirect('http://localhost/adminPage.html');
                 }
             }
             else {res.send({ response : queryString + "hat kein Ergebnis geliefert... TODO: Diese Ausgabe sollte entfernt werden"})}
