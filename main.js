@@ -41,3 +41,15 @@ app.post("/account", (req,res) => {
 
     }
 })
+
+//Evtl muss man die get Routen anpassen, ka ob das so nötig ist, weil vermtl. niemand (auch mit brute force) auf die admin seite kommt
+// Im Moment wird übernimmt der express.static alles und erlaubt den leuten den zugriff auf die html seite: https://stackoverflow.com/questions/50302508/express-js-serve-static-folder-at-specific-url-only
+// Man kann auch einfach die form von der searchbar erst nach cookie erkennen erscheinen lassen
+// HTTP Cookie kann nciht aktiviert werden, weil sonst kein javascript code drauf zugreifen kann aber evtl kann man dann einfach das so im html code dann durchsuchen
+// Weil ja eh keiner dann cookies von hand setzen kann 🤔 (:thinking:) KA muss ich wann anders gucekn
+app.get("/adminPage.html", function(req, res) {
+    console.log(req.cookies['privilege']);
+    if (req.cookies['privilege'] !== 'Admin') {
+        res.status(302).redirect('http://localhost/adminPage.html');
+    }
+})
