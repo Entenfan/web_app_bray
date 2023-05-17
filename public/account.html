@@ -46,10 +46,10 @@
                             <span onclick="register()">Register</span>
                             <hr id="Indicator">
                         </div>
-                        <form id="LoginForm">
+                        <form id="LoginForm" action="/account" method="POST">
                             <input id="loginUsername" type="text" placeholder="Username">
                             <input id ="loginPassword" type="password" placeholder="Password">
-                            <button type="submit" class="btn" onclick=loginQuery(document.getElementById("loginUsername").value,document.getElementById("loginPassword").value)> Login </button> <!--Hier muss function von dbUserSearch geladen werden-->
+                            <button type="submit" class="btn"> Login </button> <!--Hier muss function von dbUserSearch geladen werden-->
                             <a href="">Forget Password</a>
                         </form>
 
@@ -137,6 +137,23 @@
             RegForm.style.transform = "translatex(300px)";
             LoginForm.style.transform = "translatex(300px)";
             Indicator.style.transform = "translate(0px)";
+        }
+        function send() {
+            var name = document.getElementById("loginUsername").value;
+            var password = document.getElementById("loginpassword").value;
+
+            const json = {
+                name: name,
+                email: password
+            };
+
+            fetch("/account", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(json),
+            });
         }
     </script>
 
