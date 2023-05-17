@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -45,12 +45,12 @@
                             <span onclick="register()">Register</span>
                             <hr id="Indicator">
                         </div>
-                        <form id="LoginForm">
-                            <input id="loginUsername" type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn" onclick=test()>Login</button>
-                            <a href="">Forget Password</a>
+                        <form id="LoginForm" action="/account" method="POST">
+                            <input type="text" name="loginUsername" id="loginUsername" placeholder="Username">
+                            <input type="password" name="loginPassword" id="loginPassword" placeholder="Password">
+                            <input type="submit" value="Login" class="btn">
                         </form>
+                        <a href="">Forget Password</a>
 
                         <form id="RegForm">
                             <input type="text" placeholder="Username">
@@ -137,9 +137,22 @@
             LoginForm.style.transform = "translatex(300px)";
             Indicator.style.transform = "translate(0px)";
         }
+        function send() {
+            var name = document.getElementById("loginUsername").value;
+            var password = document.getElementById("loginpassword").value;
 
-        function test() {
-            alert(document.getElementById("loginUsername").value)
+            const json = {
+                name: name,
+                email: password
+            };
+
+            fetch("/account", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(json),
+            });
         }
     </script>
 
