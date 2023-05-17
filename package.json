@@ -2,6 +2,7 @@
   "name": "webpage",
   "version": "1.0.0",
   "dependencies": {
+    "express": "^4.18.2",
     "mysql": "^2.18.1"
   }
 }

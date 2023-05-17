@@ -1,5 +1,6 @@
 
--- create
+CREATE SCHEMA `webshop` ;
+Use webshop;
 CREATE TABLE users (
                        userid INTEGER PRIMARY KEY,
                        username varchar(40) NOT NULL,
