@@ -26,8 +26,11 @@ app.post("/account", (req,res) => {
     console.log(queryString);
     try {
         con.query(queryString, function(err, result, fields) {
+            if (result  && result.length > 0) {
                 console.log(result);
                 res.send(result);
+            }
+            else {res.send({ response : queryString + "hat kein Ergebnis geliefert... TODO: Diese Ausgabe sollte entfernt werden"})}
             })
         } catch (e) {
         console.error(e);
