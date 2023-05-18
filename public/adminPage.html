@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>adminPage</title>
     <link rel="stylesheet" href="adminPage.css">
+    <script type="text/javascript">
+        function check_cookie_name() {
+            var match = document.cookie.match(new RegExp('(^| )' + 'privilege' + '=([^;]+)'));
+            if (match[2] !== 'Admin') {
+                console.log('--something went wrong---');
+                window.location.href = "http://localhost"
+            }
+        }
+        window.onload = check_cookie_name;
+    </script>
 </head>
 <body style="background-color:#ffffff;">
     <nav>
@@ -42,12 +52,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function checkCookie() {
-            if (document.cookies['privilege'] !== 'Admin') {
-                console.log(document.cookies['privilege']);
-            }
-        }
-    </script>
 </body>
 </html>

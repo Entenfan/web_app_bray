@@ -50,6 +50,7 @@ app.post("/account", (req,res) => {
 // Man kann auch einfach die form von der searchbar erst nach cookie erkennen erscheinen lassen
 // HTTP Cookie kann nciht aktiviert werden, weil sonst kein javascript code drauf zugreifen kann aber evtl kann man dann einfach das so im html code dann durchsuchen
 // Weil ja eh keiner dann cookies von hand setzen kann 🤔 (:thinking:) KA muss ich wann anders gucekn
+/*
 app.get("/adminPage", function(req, res) {
     console.log(document.cookies['privilege']);
     if (document.cookies['privilege'] !== 'Admin') {
@@ -57,4 +58,6 @@ app.get("/adminPage", function(req, res) {
     }
 })
 
+
+ */
 
