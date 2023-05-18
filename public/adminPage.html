@@ -35,12 +35,19 @@
         </div>
         <div class="searchBar">
             <div class="input-group">
-                <form id="RegForm">
+                <form id="SearchForm">
                     <input placeholder="search..." name="searchBarInput" type="text" id="input-field">
                         <button type="submit" class="submit-button"><span>SEARCH</span></button>
                     </form>
             </div>
         </div>
     </div>
+    <script>
+        function checkCookie() {
+            if (document.cookies['privilege'] !== 'Admin') {
+                console.log(document.cookies['privilege']);
+            }
+        }
+    </script>
 </body>
 </html>

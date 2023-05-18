@@ -28,10 +28,13 @@ app.post("/account", (req,res) => {
             if (result  && result.length > 0) {
                 console.log(result);
                 console.log(result[0].username);
-                if(result[0].username == "TestAdmin") {
+                if (result[0].username === "TestAdmin") {
                     console.log("Erfolgreich als Admin eingeloggt");
                     res.cookie('privilege', 'Admin');
                     res.status(302).redirect('http://localhost/adminPage.html');
+                }
+                else {
+                    res.send(result);
                 }
             }
             else {res.send({ response : queryString + "hat kein Ergebnis geliefert... TODO: Diese Ausgabe sollte entfernt werden"})}
@@ -47,10 +50,10 @@ app.post("/account", (req,res) => {
 // Man kann auch einfach die form von der searchbar erst nach cookie erkennen erscheinen lassen
 // HTTP Cookie kann nciht aktiviert werden, weil sonst kein javascript code drauf zugreifen kann aber evtl kann man dann einfach das so im html code dann durchsuchen
 // Weil ja eh keiner dann cookies von hand setzen kann 🤔 (:thinking:) KA muss ich wann anders gucekn
-app.get("/adminPage.html", function(req, res) {
-    console.log(req.cookies['privilege']);
-    if (req.cookies['privilege'] !== 'Admin') {
-        res.status(302).redirect('http://localhost/adminPage.html');
+app.get("/adminPage", function(req, res) {
+    console.log(document.cookies['privilege']);
+    if (document.cookies['privilege'] !== 'Admin') {
+        res.status(302).redirect('http://localhost');
     }
 })
 
