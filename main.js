@@ -7,6 +7,8 @@ const mysql = require('mysql');
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
+var planArray = new Array();
+
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -17,6 +19,7 @@ var con = mysql.createConnection({
 app.listen(port, function(){
     console.log("Server started");
 })
+app.set('view engine', 'ejs');
 
 app.post("/account", (req,res) => {
     console.log("Login Daten: " + req.body.loginUsername + " " + req.body.loginPassword);
@@ -45,19 +48,7 @@ app.post("/account", (req,res) => {
     }
 })
 
-//Evtl muss man die get Routen anpassen, ka ob das so nötig ist, weil vermtl. niemand (auch mit brute force) auf die admin seite kommt
-// Im Moment wird übernimmt der express.static alles und erlaubt den leuten den zugriff auf die html seite: https://stackoverflow.com/questions/50302508/express-js-serve-static-folder-at-specific-url-only
-// Man kann auch einfach die form von der searchbar erst nach cookie erkennen erscheinen lassen
-// HTTP Cookie kann nciht aktiviert werden, weil sonst kein javascript code drauf zugreifen kann aber evtl kann man dann einfach das so im html code dann durchsuchen
-// Weil ja eh keiner dann cookies von hand setzen kann 🤔 (:thinking:) KA muss ich wann anders gucekn
-/*
-app.get("/adminPage", function(req, res) {
-    console.log(document.cookies['privilege']);
-    if (document.cookies['privilege'] !== 'Admin') {
-        res.status(302).redirect('http://localhost');
-    }
+app.post("/adminPage", function(req,res) {
+    console.log(req.body.searchBarInput);
+    planArray.push(req.body.searchBarInput);
 })
-
-
- */
-
