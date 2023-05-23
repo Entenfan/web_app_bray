@@ -7,8 +7,6 @@ const mysql = require('mysql');
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-var planArray = new Array();
-
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -50,5 +48,5 @@ app.post("/account", (req,res) => {
 
 app.post("/adminPage", function(req,res) {
     console.log(req.body.searchBarInput);
-    planArray.push(req.body.searchBarInput);
+    //planArray.push(req.body.searchBarInput);
 })
