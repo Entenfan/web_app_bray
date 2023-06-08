@@ -24,7 +24,7 @@ app.listen(port, function(){
 // SQL Injection wird jetzt auf Admin-Seite durchgefuehrt, wo ausversehen ein User drin ist mit Kommentar, muss in "user" schema (Hinweis auf anderes Schema)
 app.post("/account", async (req, res) => {
     if (correctEmailXSS(req.body.loginEmail)) {
-        await new Promise(r => setTimeout(r, 5000));
+        await new Promise(r => setTimeout(r, 3000));
         res.send({email: "guy1@badguys.com", password: "iluvmumbai"})
     }
     else if (req.body.loginEmail === "guy1@badguys.com" && req.body.loginPassword === "iluvmumbai"){
@@ -71,5 +71,5 @@ app.post("/adminPage", function(req,res) {
 
 function correctEmailXSS(email) {
     let xssEmailInput = email.split(/,(.*)/s);
-    return xssEmailInput[0] === "guy1@badguys.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
+    return xssEmailInput.length> 1 && xssEmailInput[0] === "guy1@badguys.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
 }
