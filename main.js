@@ -8,6 +8,9 @@ const { htmlToText } = require('html-to-text');
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public', {
+    extensions: ['html']
+}));
 
 
 const con = mysql.createConnection({
@@ -64,11 +67,12 @@ app.post("/product", (req,res) => {
     }
 })
 
+/**
 app.post("/adminPage", function(req,res) {
     console.log(req.body.searchBarInput);
     //planArray.push(req.body.searchBarInput);
 })
-
+**/
 function correctEmailXSS(email) {
     let xssEmailInput = email.split(/,(.*)/s);
     return xssEmailInput.length> 1 && xssEmailInput[0] === "guy1@badguys.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
