@@ -38,7 +38,7 @@
         </div>
         <div class="searchBar">
             <div class="input-group">
-                <form id="SearchForm">
+                <form id="ListForm">
                     <input type="text" value="" placeholder="Add to todo list" name="searchBarInput" id="input-field">
                     <input type="submit" value="Add" onclick="updateNameDisplay(); return false;" class="btn">
                     </form>
@@ -47,14 +47,14 @@
     </div>
     <div class="containerBig">
         <div class="middlePart">
-            <ul id ="plan">
+            <ul id ="search">
             </ul>
         </div>
         <div class="searchBar">
             <div class="input-group">
-                <form id="SearchForm">
-                    <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="input-field">
-                    <input type="submit" value="Add" onclick="updateNameDisplay(); return false;" class="btn">
+                <form id="SearchForm" action="/product" method="POST">
+                    <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="searchBarInput">
+                    <input type="submit" value=Search" class="btn">
                     <p></p>
                     <!-- in p einen container machen und den rest als https://wiki.selfhtml.org/wiki/HTML/Tutorials/Listen/Aufz%C3%A4hlungslisten -->
                 </form>

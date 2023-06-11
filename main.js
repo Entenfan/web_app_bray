@@ -15,9 +15,10 @@ app.use(express.static(__dirname + '/public', {
 
 const con = mysql.createConnection({
     host: "localhost",
-    user: "webshop",
+    user: "root",
     password: "password",
-    database: "webshop"
+    database: "webshop",
+    multipleStatements: true //Interessant, das muss explizit fuer SQl injection an sein (sonst kann man keine gestackte anfrage senden)
 });
 
 app.listen(port, function(){
@@ -41,25 +42,19 @@ app.post("/account", async (req, res) => {
 })
 
 app.post("/product", (req,res) => {
-    console.log("Login Daten: " + req.body.loginUsername + " " + req.body.loginPassword);
+    console.log("Product search" + req.body.searchBarInput);
     // noinspection JSStringConcatenationToES6Template,SqlResolve
-    let queryString = "select * from users Where username ='" + req.body.loginUsername + "' AND password = '" + md5(req.body.loginPassword) + "'";
+    let queryString = "select * from products Where name = '" + req.body.searchBarInput + "'";
     console.log(queryString);
     try {
         con.query(queryString, function(err, result) {
+                console.log(result);
             if (result  && result.length > 0) {
                 console.log(result);
-                console.log(result[0].username);
-                if (result[0].username === "TestAdmin") {
-                    console.log("Erfolgreich als Admin eingeloggt");
-                    res.cookie('privilege', 'Admin');
-                    res.status(302).redirect('http://localhost/adminPage.html');
-                }
-                else {
-                    res.send(result);
-                }
             }
-            else {res.send({ response : queryString + "hat kein Ergebnis geliefert... TODO: Diese Ausgabe sollte entfernt werden"})}
+            else {
+                //anzeigen, dass nix gefunden wurde
+            }
             })
         } catch (e) {
         console.error(e);
