@@ -44,19 +44,14 @@ app.post("/account", async (req, res) => {
 })
 
 app.post("/product", (req,res) => {
-    console.log("Product search" + req.body.searchBarInput);
+    console.log("Product search " + req.body.searchBarInput);
     // noinspection JSStringConcatenationToES6Template,SqlResolve
     let queryString = "select * from products Where name = '" + req.body.searchBarInput + "'";
     console.log(queryString);
-    try {
         con.query(queryString, function(err, result) {
-                console.log(result);
-                products = result;
-            })
-        } catch (e) {
-        console.error(e);
-
-    }
+            console.log(result);
+            res.json(result);
+        })
 })
 
 /**
