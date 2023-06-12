@@ -17,9 +17,14 @@
     <script src="./js/planMapView.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js">
         $(document).ready(function(){
-        $.getJSON("test.json", function(data) {
+            console.log("cnsjhedbvosa");
+        $.getJSON("http://localhost/product", function(data) {
             alert(data);
         });})
+    </script>
+    <script type="module">
+        import {updateProductsDisplay} from "./js/productsView.js";
+        window.updateNameDisplay = updateProductsDisplay;
     </script>
 </head>
 <body style="background-color:#ffffff;" onload="updateNameDisplay()">
@@ -61,10 +66,10 @@
         </div>
         <div class="searchBar">
             <div class="input-group">
-                <form id="SearchForm" action="/product" method="post" >
+                <form id="SearchForm">
                     <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="searchBarInput">
                 </form>
-                <button type="submit" form="SearchForm">Search</button>
+                <button type="submit" form="SearchForm" onclick="updateProductsDisplay()">Search</button>
             </div>
         </div>
     </div>

@@ -1,4 +1,3 @@
-
 let planArray = [];
 function updateNameDisplay() {
     if(document.getElementById("input-field")&& document.getElementById("input-field").value) {

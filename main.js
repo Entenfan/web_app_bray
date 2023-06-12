@@ -50,7 +50,8 @@ app.post("/product", (req,res) => {
     console.log(queryString);
         con.query(queryString, function(err, result) {
             console.log(result);
-            res.json(result);
+            // res.send(JSON.stringify(result));
+            // res.end();
         })
 })
 
