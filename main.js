@@ -1,16 +1,18 @@
-const express = require('express');
+import express from 'express';
 //const cookieParser = require('cookie-parser');
 const app = express();
 const port = 80;
-const mysql = require('mysql');
-const md5 = require('md5');
-const { htmlToText } = require('html-to-text');
+import mysql from 'mysql';
+import md5 from 'md5';
+
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public', {
+app.use(express.static( './public', {
     extensions: ['html']
 }));
+
+export let products;
 
 
 const con = mysql.createConnection({
@@ -49,12 +51,7 @@ app.post("/product", (req,res) => {
     try {
         con.query(queryString, function(err, result) {
                 console.log(result);
-            if (result  && result.length > 0) {
-                console.log(result);
-            }
-            else {
-                //anzeigen, dass nix gefunden wurde
-            }
+                products = result;
             })
         } catch (e) {
         console.error(e);
