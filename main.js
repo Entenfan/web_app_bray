@@ -13,9 +13,6 @@ app.use(express.static( './public', {
     extensions: ['html']
 }));
 
-export let products;
-
-
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -51,27 +48,14 @@ app.post("/product", (req,res) => {
     console.log(queryString);
         con.query(queryString, function(err, result) {
             console.log(result);
-            // res.send(JSON.stringify(result));
-            // res.end();
             let dataString = JSON.stringify(result).replaceAll('[','').replaceAll(']','');
             dataString = 'function data(){ return JSON.stringify([' + dataString + ']);}';
             fs.writeFile('public/data.js', dataString, (err) => { //"data = '" + JSON.stringify(result) + "'"
                 if (err) throw err;
             })
-            // fs.readFile('public/data.js', (err, data) => {
-            //     if (err) throw err;
-            //     let mydata = JSON.parse(data)
-            //     for(let i=0; i<mydata.length; i++) {
-            //         if (mydata[i].name) {
-            //             console.log(mydata[i].name);
-            //         }
-            //         else {
-            //             console.log(mydata[i].email);
-            //         }
-            //
-            //     }
-            // });
         })
+    res.status(200);
+        res.end();
 })
 
 /**
@@ -83,17 +67,4 @@ app.post("/adminPage", function(req,res) {
 function correctEmailXSS(email) {
     let xssEmailInput = email.split(/,(.*)/s);
     return xssEmailInput.length> 1 && xssEmailInput[0] === "guy1@badguys.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
-}
-
-function getDepth(obj) {
-    let depth = 0;
-    if (obj.children) {
-        obj.children.forEach(function (d) {
-            let tmpDepth = getDepth(d)
-            if (tmpDepth > depth) {
-                depth = tmpDepth
-            }
-        })
-    }
-    return 1 + depth
 }

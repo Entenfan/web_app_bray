@@ -60,10 +60,13 @@
                 <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
                 <form id="SearchForm" action="/product" method="post" target="dummyframe">
                     <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="searchBarInput">
-                    <button type="submit" form="SearchForm" onclick="updateProductsDisplay(data())">Search</button>
+                    <button type="submit" form="SearchForm" onclick="reload(); updateProductsDisplay(data()); ">Search</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
+<script>function reload(){
+    window.location.href = window.location.href;
+}</script>
 </html>
