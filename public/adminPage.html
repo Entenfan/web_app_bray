@@ -14,13 +14,9 @@
         }
         window.onload = check_cookie_name;
     </script>
-    <script src="./js/planMapView.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js">
-        $(document).ready(function(){
-        $.getJSON("test.json", function(data) {
-            alert(data);
-        });})
-    </script>
+    <script src="/js/planMapView.js" type="text/javascript"></script>
+    <script src="/data.js" type="text/javascript"></script>
+    <script src="/js/productsView.js" type="text/javascript" ></script>
 </head>
 <body style="background-color:#ffffff;" onload="updateNameDisplay()">
     <nav>
@@ -64,7 +60,7 @@
                 <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
                 <form id="SearchForm" action="/product" method="post" target="dummyframe">
                     <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="searchBarInput">
-                    <button type="submit" form="SearchForm">Search</button>
+                    <button type="submit" form="SearchForm" onclick="updateProductsDisplay(data())">Search</button>
                 </form>
             </div>
         </div>
