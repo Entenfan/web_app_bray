@@ -9,6 +9,7 @@ import fs from 'fs';
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static( './public', {
     extensions: ['html']
 }));
@@ -48,14 +49,13 @@ app.post("/product", (req,res) => {
     console.log(queryString);
         con.query(queryString, function(err, result) {
             console.log(result);
-            let dataString = JSON.stringify(result).replaceAll('[','').replaceAll(']','');
-            dataString = 'function data(){ return JSON.stringify([' + dataString + ']);}';
-            fs.writeFile('public/data.js', dataString, (err) => { //"data = '" + JSON.stringify(result) + "'"
-                if (err) throw err;
-            })
+            res.json(result);
+            // let dataString = JSON.stringify(result).replaceAll('[','').replaceAll(']','');
+            // dataString = 'function data(){ return JSON.stringify([' + dataString + ']);}';
+            // fs.writeFile('public/data.js', dataString, (err) => { //"data = '" + JSON.stringify(result) + "'"
+            //     if (err) throw err;
+            // })
         })
-    res.status(200);
-        res.end();
 })
 
 /**

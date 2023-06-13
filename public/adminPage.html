@@ -17,6 +17,7 @@
     <script src="/js/planMapView.js" type="text/javascript"></script>
     <script src="/data.js" type="text/javascript"></script>
     <script src="/js/productsView.js" type="text/javascript" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body style="background-color:#ffffff;" onload="updateNameDisplay()">
     <nav>
@@ -57,13 +58,46 @@
         </div>
         <div class="searchBar">
             <div class="input-group">
-                <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
-                <form id="SearchForm" action="/product" method="post" target="dummyframe">
-                    <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="searchBarInput">
-                    <button type="submit" form="SearchForm" onclick="updateProductsDisplay(data()); ">Search</button>
+                <form id="SearchForm">
+                    <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput"
+                           id="searchBarInput">
                 </form>
+                <button type="submit" form="SearchForm">Search</button>
             </div>
         </div>
     </div>
 </body>
+<script>
+    const form = document.getElementById('SearchForm');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        const formData = new FormData(form);
+        const jsonData = {};
+
+        for (const [key, value] of formData.entries()) {
+            jsonData[key] = value;
+        }
+
+        // Send the JSON data
+        fetch('/product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server
+                console.log(data);
+                updateProductsDisplay(data)
+            })
+            .catch(error => {
+                // Handle any errors
+                console.error(error);
+            });
+    });
+</script>
 </html>
