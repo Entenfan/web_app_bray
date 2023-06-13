@@ -61,10 +61,11 @@
         </div>
         <div class="searchBar">
             <div class="input-group">
-                <form id="SearchForm" action="/product" method="post" >
+                <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+                <form id="SearchForm" action="/product" method="post" target="dummyframe">
                     <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="searchBarInput">
+                    <button type="submit" form="SearchForm">Search</button>
                 </form>
-                <button type="submit" form="SearchForm">Search</button>
             </div>
         </div>
     </div>
