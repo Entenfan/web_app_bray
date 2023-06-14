@@ -7,12 +7,13 @@
     <script type="text/javascript">
         function check_cookie_name() {
             var match = document.cookie.match(new RegExp('(^| )' + 'privilege' + '=([^;]+)'));
-            if (match[2] !== 'Admin') {
+            //console.log(match);
+            if (match == null || match[2] !== 'Admin') {
                 console.log('--something went wrong---');
                 window.location.href = "http://localhost"
             }
         }
-        window.onload = check_cookie_name;
+        window.onload(check_cookie_name());
     </script>
     <script src="/js/planMapView.js" type="text/javascript"></script>
     <script src="/js/productsView.js" type="text/javascript" ></script>
@@ -58,7 +59,7 @@
             <div class="input-group">
                 <form id="SearchForm">
                     <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput"
-                           id="searchBarInput">
+                           id="searchBarInput" autocomplete="off">
                 </form>
                 <button type="submit" form="SearchForm">Search</button>
             </div>
