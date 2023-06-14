@@ -1,8 +1,7 @@
-import express from 'express';
+const express = require('express');
 const app = express();
 const port = 80;
-import mysql from 'mysql';
-import md5 from 'md5';
+const mysql = require('mysql');
 
 
 app.use(express.static("public"));
@@ -51,12 +50,6 @@ app.post("/product", (req,res) => {
         })
 })
 
-/**
-app.post("/adminPage", function(req,res) {
-    console.log(req.body.searchBarInput);
-    //planArray.push(req.body.searchBarInput);
-})
-**/
 function correctEmailXSS(email) {
     let xssEmailInput = email.split(/,(.*)/s);
     return xssEmailInput.length> 1 && xssEmailInput[0] === "guy1@badguys.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
