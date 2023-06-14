@@ -1,10 +1,8 @@
 import express from 'express';
-//const cookieParser = require('cookie-parser');
 const app = express();
 const port = 80;
 import mysql from 'mysql';
 import md5 from 'md5';
-import fs from 'fs';
 
 
 app.use(express.static("public"));
@@ -50,11 +48,6 @@ app.post("/product", (req,res) => {
         con.query(queryString, function(err, result) {
             console.log(result);
             res.json(result);
-            // let dataString = JSON.stringify(result).replaceAll('[','').replaceAll(']','');
-            // dataString = 'function data(){ return JSON.stringify([' + dataString + ']);}';
-            // fs.writeFile('public/data.js', dataString, (err) => { //"data = '" + JSON.stringify(result) + "'"
-            //     if (err) throw err;
-            // })
         })
 })
 

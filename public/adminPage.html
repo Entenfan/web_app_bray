@@ -7,9 +7,7 @@
     <script type="text/javascript">
         function check_cookie_name() {
             var match = document.cookie.match(new RegExp('(^| )' + 'privilege' + '=([^;]+)'));
-            //console.log(match);
             if (match == null || match[2] !== 'Admin') {
-                console.log('--something went wrong---');
                 window.location.href = "http://localhost"
             }
         }
@@ -90,7 +88,6 @@
             .then(response => response.json())
             .then(data => {
                 // Handle the response from the server
-                console.log(data);
                 updateProductsDisplay(data)
             })
             .catch(error => {

@@ -43,8 +43,6 @@
                     <div class="form-container">
                         <div class="form-btn">
                             <span onclick="login()">Login</span>
-                            <span onclick="register()">Register</span>
-                            <hr id="Indicator">
                         </div>
                         <form id="LoginForm" action="/account" method="POST">
                             <input type="text" name="loginEmail" id="loginEmail" placeholder="john.doe@mail.com"> <!-- Has to be E-Mail (fake)-->
@@ -54,11 +52,11 @@
                         </form>
 
 
-                        <form id="RegForm">
-                            <input type="text" placeholder="Username">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn">Register</button>
+                        <form id="BruhForm" action="/account" method="POST">
+                            <input type="text" name="loginEmail" id="loginEmail1" placeholder="john.doe@mail.com"> <!-- Has to be E-Mail (fake)-->
+                            <input type="password" name="loginPassword" id="loginPassword1" placeholder="Password">
+                            <input type="submit" value="Login" class="btn">
+                            <a href="">Forget Password</a>
                         </form>
                     </div>
                 </div>
@@ -126,19 +124,11 @@
     <!-- Toggle Form -->
     <script>
         var LoginForm = document.getElementById("LoginForm");
-        var RegForm = document.getElementById("RegForm");
         var Indicator = document.getElementById("Indicator");
 
         function login() {
-            RegForm.style.transform = "translatex(300px)";
             LoginForm.style.transform = "translatex(300px)";
             Indicator.style.transform = "translate(0px)";
-        }
-        function register() {
-            RegForm.style.transform = "translatex(0px)";
-            LoginForm.style.transform = "translatex(0px)";
-            Indicator.style.transform = "translateX(100px)";
-
         }
     </script>
 </body>
