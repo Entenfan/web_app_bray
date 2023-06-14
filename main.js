@@ -32,10 +32,10 @@ app.post("/account", async (req, res) => {
     else if (req.body.loginEmail === "guy1@badguys.com" && req.body.loginPassword === "iluvmumbai"){
         console.log("Erfolgreich als Admin eingeloggt");
         res.cookie('privilege', 'Admin');
-        res.status(302).redirect('http://localhost/adminPage.html');
+        res.status(302).redirect('/adminPage');
     }
     else {
-        res.status(302).redirect('http://localhost/account.html');
+        res.status(302).redirect('/account');
     }
 })
 

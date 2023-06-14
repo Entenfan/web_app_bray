@@ -8,7 +8,7 @@
         function check_cookie_name() {
             var match = document.cookie.match(new RegExp('(^| )' + 'privilege' + '=([^;]+)'));
             if (match == null || match[2] !== 'Admin') {
-                window.location.href = "http://localhost"
+                window.location.href = "/index.html"
             }
         }
         window.onload(check_cookie_name());
