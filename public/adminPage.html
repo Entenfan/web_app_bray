@@ -13,10 +13,9 @@
         }
         window.onload(check_cookie_name());
     </script>
-    <script src="/js/planMapView.js" type="text/javascript"></script>
     <script src="/js/productsView.js" type="text/javascript" ></script>
 </head>
-<body style="background-color:#ffffff;" onload="updateNameDisplay()">
+<body style="background-color:#ffffff;">
     <nav>
         <label class="logo">
             <a href="index.html"><img src="images/logo.png" alt="logo" width="125px"></a>
@@ -30,27 +29,10 @@
         </ul>
     </nav>
     <div class="containerBig">
-        <div class="header" style="color: #6e2a32;">Hello Admin!</div>
-        <div class="todo" style="color: #8d323e;">todo:</div>
-        <div class="middlePart">
-            <ul id ="plan">
-            </ul>
-        </div>
-        <div class="searchBar">
-            <div class="input-group">
-                <form id="ListForm">
-                    <input type="text" value="" placeholder="Add to todo list" name="listInput" id="input-field">
-                    <input type="submit" value="Add" onclick="updateNameDisplay(); return false;" class="btn">
-                    </form>
-            </div>
-        </div>
-    </div>
-    <div class="containerBig">
         <div class="header" style="color: #6e2a32;" id="header2">Search Products:</div>
         <div class="todo" style="color: #8d323e;">Products:</div>
         <div class="middlePart">
             <ul id ="search">
-
             </ul>
         </div>
         <div class="searchBar">
@@ -68,8 +50,7 @@
     const form = document.getElementById('SearchForm');
 
     form.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent the form from submitting normally
-
+        event.preventDefault();
         const formData = new FormData(form);
         const jsonData = {};
 
@@ -77,7 +58,6 @@
             jsonData[key] = value;
         }
 
-        // Send the JSON data
         fetch('/product', {
             method: 'POST',
             headers: {

