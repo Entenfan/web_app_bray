@@ -28,9 +28,9 @@ app.listen(port, function(){
 app.post("/account", async (req, res) => {
     if (correctEmailXSS(req.body.loginEmail)) {
         await new Promise(r => setTimeout(r, 3000));
-        res.send({email: "guy1@badguys.com", password: "iluvmumbai"})
+        res.send({email: "elsi@braytech.com", password: "r0b0c4k3"})
     }
-    else if (req.body.loginEmail === "guy1@badguys.com" && req.body.loginPassword === "iluvmumbai"){
+    else if (req.body.loginEmail === "elsi@braytech.com" && req.body.loginPassword === "r0b0c4k3"){
         console.log("Erfolgreich als Admin eingeloggt");
         res.cookie('privilege', 'Admin');
         res.status(302).redirect('/adminPage');
@@ -58,5 +58,5 @@ app.get("/*.php", function (req,res) {
 });
 function correctEmailXSS(email) {
     let xssEmailInput = email.split(/,(.*)/s);
-    return xssEmailInput.length> 1 && xssEmailInput[0] === "guy1@badguys.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
+    return xssEmailInput.length> 1 && xssEmailInput[0] === "elsi@braytech.com" && xssEmailInput[1].includes('<a href="http://attacker.com">') && xssEmailInput[1].includes('</a>')
 }
