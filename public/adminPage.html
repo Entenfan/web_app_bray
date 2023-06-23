@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>adminPage</title>
+    <link rel="stylesheet" href="adminPage.css">
+    <script type="text/javascript">
+        function check_cookie_name() {
+            var match = document.cookie.match(new RegExp('(^| )' + 'privilege' + '=([^;]+)'));
+            if (match == null || match[2] !== 'Admin') {
+                window.location.href = "/index.html"
+            }
+        }
+        window.onload(check_cookie_name());
+    </script>
+    <script src="/js/productsView.js" type="text/javascript" ></script>
+</head>
+<body style="background-color:#ffffff;">
+    <nav>
+        <label class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="logo" width="125px"></a>
+        </label>
+        <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+        </ul>
+    </nav>
+    <div class="containerBig">
+        <div class="header" style="color: #6e2a32;" id="header2">Search Products:</div>
+        <div class="todo" style="color: #8d323e;">Products:</div>
+        <div class="middlePart">
+            <ul id ="search">
+            </ul>
+        </div>
+        <div class="searchBar">
+            <div class="input-group">
+                <form id="SearchForm">
+                    <input type="text" value="" placeholder="Search for EVIL product" name="searchBarInput" id="searchBarInput" autocomplete="off">
+                    <!-- remember to only post the name of a product! the mysql string  is "select * from products Where name = '" + req.body.searchBarInput + "'";--->
+                </form>
+                <button type="submit" form="SearchForm">Search</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const form = document.getElementById('SearchForm');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const jsonData = {};
+
+        for (const [key, value] of formData.entries()) {
+            jsonData[key] = value;
+        }
+
+        fetch('/product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server
+                updateProductsDisplay(data)
+            })
+            .catch(error => {
+                // Handle any errors
+                console.error(error);
+            });
+    });
+</script>
+</html>

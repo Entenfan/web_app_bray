@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -42,21 +43,20 @@
                     <div class="form-container">
                         <div class="form-btn">
                             <span onclick="login()">Login</span>
-                            <span onclick="register()">Register</span>
-                            <hr id="Indicator">
                         </div>
-                        <form id="LoginForm">
-                            <input id="loginUsername" type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn" onclick=test()>Login</button>
+                        <form id="LoginForm" action="/account" method="POST">
+                            <input type="text" name="loginEmail" id="loginEmail" placeholder="john.doe@mail.com"> <!-- Has to be E-Mail (fake)-->
+                            <input type="password" name="loginPassword" id="loginPassword" placeholder="Password">
+                            <input type="submit" value="Login" class="btn">
                             <a href="">Forget Password</a>
                         </form>
 
-                        <form id="RegForm">
-                            <input type="text" placeholder="Username">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn">Register</button>
+
+                        <form id="BruhForm" action="/account" method="POST">
+                            <input type="text" name="loginEmail" id="loginEmail1" placeholder="john.doe@mail.com"> <!-- Has to be E-Mail (fake)-->
+                            <input type="password" name="loginPassword" id="loginPassword1" placeholder="Password">
+                            <input type="submit" value="Login" class="btn">
+                            <a href="">Forget Password</a>
                         </form>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
         var MenuItems = document.getElementById("MenuItems");
         MenuItems.style.maxHeight = "0px";
         function menutoggle() {
-            if (MenuItems.style.maxHeight == "0px") {
+            if (MenuItems.style.maxHeight === "0px") {
                 MenuItems.style.maxHeight = "200px"
             }
             else {
@@ -124,25 +124,17 @@
     <!-- Toggle Form -->
     <script>
         var LoginForm = document.getElementById("LoginForm");
-        var RegForm = document.getElementById("RegForm");
         var Indicator = document.getElementById("Indicator");
-        function register() {
-            RegForm.style.transform = "translatex(0px)";
-            LoginForm.style.transform = "translatex(0px)";
-            Indicator.style.transform = "translateX(100px)";
 
-        }
         function login() {
-            RegForm.style.transform = "translatex(300px)";
             LoginForm.style.transform = "translatex(300px)";
             Indicator.style.transform = "translate(0px)";
         }
-
-        function test() {
-            alert(document.getElementById("loginUsername").value)
-        }
     </script>
-
 </body>
 
 </html>
+<!-- Nextauth.js 3.29.0-->
+<!-- Express.js 4.18.2-->
+<!-- Node.js 20.3.0-->
+<!-- For questions contact elsi@braytech.com -->
